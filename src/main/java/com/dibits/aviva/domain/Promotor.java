@@ -1,24 +1,36 @@
-package com.dibits.rankaviva.domain;
+package com.dibits.aviva.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity
 public class Promotor implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private int clientesEmSala;
-	private int clientesVendidos;
+	private Integer cs;
+	private Integer cv;
 	private String area;
 
-	public Promotor(Integer id, String nome, int clientesEmSala, int clientesVendidos, String area	) {
+	public Promotor() {
+		
+	}
+
+	public Promotor(Integer id, String nome, Integer cs, Integer cv, String area) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.clientesEmSala = clientesEmSala;
-		this.clientesVendidos = clientesVendidos;
+		this.cs = cs;
+		this.cv = cv;
 		this.area = area;
 	}
 
@@ -38,20 +50,20 @@ public class Promotor implements Serializable{
 		this.nome = nome;
 	}
 
-	public int getClientesEmSala() {
-		return clientesEmSala;
+	public Integer getCs() {
+		return cs;
 	}
 
-	public void setClientesEmSala(int clientesEmSala) {
-		this.clientesEmSala = clientesEmSala;
+	public void setCs(Integer cs) {
+		this.cs = cs;
 	}
 
-	public int getClientesVendidos() {
-		return clientesVendidos;
+	public Integer getCv() {
+		return cv;
 	}
 
-	public void setClientesVendidos(int clientesVendidos) {
-		this.clientesVendidos = clientesVendidos;
+	public void setCv(Integer cv) {
+		this.cv = cv;
 	}
 
 	public String getArea() {
@@ -61,7 +73,6 @@ public class Promotor implements Serializable{
 	public void setArea(String area) {
 		this.area = area;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -83,6 +94,4 @@ public class Promotor implements Serializable{
 	
 	
 }
-// Construtores, getters e setters
 
-// ...

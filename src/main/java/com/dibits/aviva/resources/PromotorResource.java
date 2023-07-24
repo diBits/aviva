@@ -1,4 +1,4 @@
-package com.dibits.rankaviva.resources;
+package com.dibits.aviva.resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dibits.rankaviva.domain.Promotor;
+import com.dibits.aviva.domain.Promotor;
 
 @RestController
 @RequestMapping(value="/promotores")

@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
-
+//CLASSE CATEGORIA
 @Entity
 public class Promotor implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -24,6 +26,7 @@ public class Promotor implements Serializable{
 	private Integer cv;
 	private String area;
 	
+	@JsonManagedReference
 	@ManyToMany(mappedBy = "promotores")
 	private List<Ranking> rankings = new ArrayList<>();
 

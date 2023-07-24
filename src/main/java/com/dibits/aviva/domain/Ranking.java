@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
-
+//CLASSE PRODUTO
 @Entity
 public class Ranking implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -25,6 +27,7 @@ public class Ranking implements Serializable{
 	private String nome;
 	private LocalDate data;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "RANKING_PROMOTOR",
 		joinColumns = @JoinColumn(name = "ranking_id"),

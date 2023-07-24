@@ -1,6 +1,7 @@
 package com.dibits.aviva.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,35 +10,37 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 
 @Entity
-public class Promotor implements Serializable{
+public class Ranking implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private Integer cs;
-	private Integer cv;
-	private String area;
+	private LocalDate data;
 	
-	@ManyToMany(mappedBy = "promotores")
-	private List<Ranking> rankings = new ArrayList<>();
-
-	public Promotor() {
+	@ManyToMany
+	@JoinTable(name = "RANKING_PROMOTOR",
+		joinColumns = @JoinColumn(name = "ranking_id"),
+		inverseJoinColumns = @JoinColumn(name = "promotor_id")
+			)
+	private List<Promotor> promotores = new ArrayList<>();
+	
+	public Ranking() {
 		
 	}
 
-	public Promotor(Integer id, String nome, Integer cs, Integer cv, String area) {
+	public Ranking(Integer id, String nome, LocalDate data) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.cs = cs;
-		this.cv = cv;
-		this.area = area;
+		this.data = data;
 	}
 
 	public Integer getId() {
@@ -56,36 +59,20 @@ public class Promotor implements Serializable{
 		this.nome = nome;
 	}
 
-	public Integer getCs() {
-		return cs;
+	public LocalDate getData() {
+		return data;
 	}
 
-	public void setCs(Integer cs) {
-		this.cs = cs;
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
-	public Integer getCv() {
-		return cv;
+	public List<Promotor> getPromotores() {
+		return promotores;
 	}
 
-	public void setCv(Integer cv) {
-		this.cv = cv;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-	
-	public List<Ranking> getRankings() {
-		return rankings;
-	}
-
-	public void setRankings(List<Ranking> rankings) {
-		this.rankings = rankings;
+	public void setPromotores(List<Promotor> promotores) {
+		this.promotores = promotores;
 	}
 
 	@Override
@@ -101,9 +88,9 @@ public class Promotor implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Promotor other = (Promotor) obj;
+		Ranking other = (Ranking) obj;
 		return Objects.equals(id, other.id);
 	}
 
+	
 }
-
